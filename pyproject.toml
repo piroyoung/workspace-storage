@@ -1,0 +1,13 @@
+[project]
+name = "workspace-storage"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "copilot-swe-agent[bot]", email = "198982749+Copilot@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
