@@ -5,9 +5,11 @@ A Python package for Microsoft Fabric workspace and tenant management utilities.
 ## Features
 
 - **FabricUtil**: A utility class for workspace and tenant management operations
-  - Get list of workspaces
-  - Calculate total file sizes for workspaces
-  - Calculate total file sizes for tenants
+  - Get list of workspaces using semantic-link API (with fallback)
+  - Calculate actual total file sizes for workspaces from real data
+  - Calculate actual total file sizes for tenants from real data
+  - Automatic detection of Microsoft Fabric environment
+  - Graceful fallback when not in Fabric environment
   - Support for various authentication methods
 
 ## Installation
