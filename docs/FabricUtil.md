@@ -175,24 +175,45 @@ except ValueError as e:
 
 ### Current Implementation
 
-The current implementation provides a working framework with placeholder data. It demonstrates:
-- Class structure and method signatures
-- Error handling patterns
-- Logging integration
-- Parameter validation
+The current implementation uses the `semantic-link` package for Microsoft Fabric integration:
+- **semantic-link integration**: When available and in a Fabric environment, uses real API calls
+- **Graceful fallback**: Falls back to placeholder data when not in Fabric environment
+- **Error handling**: Proper exception handling and logging for API failures
+- **Real data calculation**: Calculates actual total sizes from workspace items when possible
+
+### Implementation Details
+
+When running in a Microsoft Fabric environment with `semantic-link` available:
+- `get_workspaces()` uses `fabric.list_workspaces()` to retrieve real workspace data
+- `get_workspace_total_size()` uses `fabric.list_items(workspace_id)` to get actual item sizes
+- `get_tenant_total_size()` sums real workspace sizes from the actual workspace list
+
+When not in a Fabric environment:
+- Gracefully falls back to placeholder implementation for testing and development
+- Logs appropriate warnings and information about the fallback
 
 ### Future Enhancements
 
-When `semantic-link` is available, the implementation will be enhanced to:
-- Connect to actual Microsoft Fabric APIs
-- Retrieve real workspace and tenant data
-- Process actual file sizes and metadata
-- Support various authentication methods
+The implementation is now ready for production use with Microsoft Fabric:
+- Real workspace and tenant data retrieval ✅
+- Actual file sizes and metadata processing ✅
+- Automatic authentication handling in Fabric environments ✅
+- Comprehensive error handling and logging ✅
 
 ### Dependencies
 
 - **Required**: Python 3.12+
-- **Optional**: `semantic-link` (for Microsoft Fabric integration)
+- **Optional**: `semantic-link>=0.11.0` with Azure dependencies (for Microsoft Fabric integration)
+
+To install with Fabric support:
+```bash
+pip install workspace-storage[fabric]
+```
+
+This includes:
+- `semantic-link>=0.11.0`: Microsoft Fabric API integration
+- `azure-identity>=1.23.0`: Azure authentication
+- `azure-core>=1.35.0`: Azure core libraries
 
 ## License
 
